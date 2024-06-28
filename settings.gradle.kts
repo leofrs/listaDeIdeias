@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ListaDeideias"
 include(":app")
+include(":app")
