@@ -1,7 +1,10 @@
 package com.example.listadeideias.views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
@@ -15,14 +18,32 @@ import com.example.listadeideias.model.ListModel
 @Composable
 fun CardListView(item: ListModel) {
     Card(
-        modifier = Modifier.fillMaxWidth().padding(all = 12.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(all = 12.dp).clickable {  }
     ){
         Column(
-            modifier = Modifier.background(Color.DarkGray).fillMaxWidth().padding(all = 16.dp)
+            modifier = Modifier
+                .background(Color.DarkGray)
+                .fillMaxWidth()
+                .padding(all = 16.dp)
         ){
             Text(
                 text = item.title,
                 color = Color.White
+            )
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
+            Text(
+                modifier = Modifier.clickable {  },
+                text = "Alterar"
+            )
+            Text(
+                modifier = Modifier.clickable {  },
+                text = "Excluir"
             )
         }
     }
