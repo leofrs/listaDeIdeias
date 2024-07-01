@@ -5,9 +5,8 @@ data class ListModel(
     val title: String = "",
     val description: String = ""
 )
-
 object ListFake{
-    val list = listOf(
+    val list = mutableListOf(
         ListModel(
             title = "Item 1", description = "Descrição 1"
         ),

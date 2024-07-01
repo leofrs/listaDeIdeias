@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.listadeideias.views.AddItemView
+import com.example.listadeideias.views.EditItemView
 import com.example.listadeideias.views.HomeView
 
 @Composable
@@ -20,10 +21,13 @@ fun Navigation(
         startDestination = ScreenRoutes.HomeScreen.route
     ){
         composable(route = ScreenRoutes.HomeScreen.route){
-            HomeView()
+            HomeView(navController)
         }
         composable(route = ScreenRoutes.AddScreen.route){
-            AddItemView()
+            AddItemView(navController, viewModel)
+        }
+        composable(route = ScreenRoutes.EditScreen.route){
+            EditItemView(navController)
         }
     }
 }

@@ -1,37 +1,37 @@
 package com.example.listadeideias.views
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun EditItemView() {
+fun EditItemView(navController: NavController) {
     Scaffold(
-        topBar = { TopBarView(title = "Atualizar") }
+        topBar = { TopBarView(title = "Editar Lista", backButton = {navController.navigateUp()}) },
+        bottomBar = { BottomBarView(title = "© L.S Android Developer")}
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it),
-            verticalArrangement = Arrangement.Center
         ) {
+            Spacer(modifier = Modifier.height(8.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -55,7 +55,9 @@ fun EditItemView() {
                     label = { Text(text = "Descrição")})
             }
             Row (
-                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp),
                 horizontalArrangement = Arrangement.SpaceAround
             ){
                 Button(onClick = { /*TODO*/ }) {
@@ -67,10 +69,4 @@ fun EditItemView() {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun EditItemPreview() {
-    EditItemView()
 }

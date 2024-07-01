@@ -13,10 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.example.listadeideias.ScreenRoutes
 import com.example.listadeideias.model.ListModel
 
 @Composable
-fun CardListView(item: ListModel) {
+fun CardListView(item: ListModel, navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -38,7 +40,7 @@ fun CardListView(item: ListModel) {
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             Text(
-                modifier = Modifier.clickable {  },
+                modifier = Modifier.clickable { navController.navigate(ScreenRoutes.EditScreen.route) },
                 text = "Alterar"
             )
             Text(

@@ -9,19 +9,29 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import com.example.listadeideias.ScreenRoutes
 import com.example.listadeideias.model.ListFake
+import com.example.listadeideias.viewModel.ListViewModel
 
 @Composable
-fun HomeView() {
+fun HomeView(navController: NavHostController, listViewModel: ListViewModel = viewModel()) {
+    val notes by remember { listViewModel.notes }
+
     Scaffold(
-        topBar = { TopBarView("List of Ideas") },
+        topBar = { TopBarView("List of Ideas", backButton = {}) },
         bottomBar = { BottomBarView("© L.S Android Developer") },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.navigate(ScreenRoutes.AddScreen.route)
+                          },
                 containerColor = Color.Blue,
                 contentColor = Color.White
             ) {
@@ -35,15 +45,9 @@ fun HomeView() {
         LazyColumn (
             modifier = Modifier.padding(it)
         ){
-            items(ListFake.list){
-                item -> CardListView(item = item)
+            items(notes){
+                item -> CardListView(item = item, navController)
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HomeViewPreview() {
-    HomeView()
 }
